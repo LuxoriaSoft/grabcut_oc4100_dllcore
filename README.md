@@ -10,6 +10,8 @@ This package provides a .NET wrapper for the GrabCut algorithm, implemeted in na
 ## Source Code
 The precompiled native libraries are built from the source code available at [LuxoriaSoft/grabcut_oc4100_dllcore](https://github.com/LuxoriaSoft/grabcut_oc4100_dllcore)
 
+[![codecov](https://codecov.io/gh/LuxoriaSoft/grabcut_oc4100_dllcore/branch/main/graph/badge.svg)](https://codecov.io/gh/LuxoriaSoft/grabcut_oc4100_dllcore)
+
 ## Installation
 You can install the package via NuGet Package Manager or the `.NET CLI`:
 
