@@ -2,6 +2,10 @@
 ## OpenCV GrabCut Algorithm
 
 This package provides a .NET wrapper for the GrabCut algorithm, implemeted in native C++ with OpenCV.
+ 
+[Online Documentation](https://dotnet-grabcut.luxoriasoft.bluepelicansoft.com/)
+
+[Check it out on Nuget.org](https://www.nuget.org/packages/Luxoria.Algorithm.GrabCut)
 
 ## Requirements
 - **.NET Version**: `net8.0` or compatible.
