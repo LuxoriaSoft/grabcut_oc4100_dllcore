@@ -26,7 +26,6 @@ public class GrabCutParameterValidationTests : IDisposable
         }
         catch
         {
-            // Ignore cleanup errors
         }
     }
 
@@ -49,6 +48,9 @@ public class GrabCutParameterValidationTests : IDisposable
         return testImagePath;
     }
 
+    /// <summary>
+    /// Tests that Exec throws ArgumentException when color mode is false and only foreground color is provided.
+    /// </summary>
     [Fact]
     public void Exec_WithColorModeFalse_AndOnlyForegroundColor_ThrowsException()
     {
@@ -63,6 +65,9 @@ public class GrabCutParameterValidationTests : IDisposable
         Assert.Contains("Foreground and background colors must be provided", ex.Message);
     }
 
+    /// <summary>
+    /// Tests that Exec throws ArgumentException when color mode is false and only background color is provided.
+    /// </summary>
     [Fact]
     public void Exec_WithColorModeFalse_AndOnlyBackgroundColor_ThrowsException()
     {
@@ -77,6 +82,9 @@ public class GrabCutParameterValidationTests : IDisposable
         Assert.Contains("Foreground and background colors must be provided", ex.Message);
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully when color mode is true even if foreground color is null.
+    /// </summary>
     [Fact]
     public void Exec_WithColorModeTrue_IgnoresForegroundColorNull()
     {
@@ -89,6 +97,9 @@ public class GrabCutParameterValidationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully when color mode is true even if background color is null.
+    /// </summary>
     [Fact]
     public void Exec_WithColorModeTrue_IgnoresBackgroundColorNull()
     {
@@ -101,6 +112,9 @@ public class GrabCutParameterValidationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with various ROI rectangle positions.
+    /// </summary>
     [Fact]
     public void Exec_WithVaryingRectanglePositions_AllExecuteSuccessfully()
     {
@@ -124,6 +138,9 @@ public class GrabCutParameterValidationTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec handles negative X coordinate (may succeed or fail depending on native code behavior).
+    /// </summary>
     [Fact]
     public void Exec_WithNegativeX_StillExecutes()
     {
@@ -144,6 +161,9 @@ public class GrabCutParameterValidationTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec handles very small width dimensions (may throw InvalidOperationException or SEHException).
+    /// </summary>
     [Fact]
     public void Exec_WithVerySmallWidth_Executes()
     {
@@ -166,6 +186,9 @@ public class GrabCutParameterValidationTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec handles very small height dimensions (may throw InvalidOperationException or SEHException).
+    /// </summary>
     [Fact]
     public void Exec_WithVerySmallHeight_Executes()
     {
@@ -188,6 +211,9 @@ public class GrabCutParameterValidationTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec handles large margin values (may succeed or throw SEHException on edge cases).
+    /// </summary>
     [Fact]
     public void Exec_WithLargeMarginValues_Executes()
     {
@@ -207,6 +233,9 @@ public class GrabCutParameterValidationTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec handles negative margin values (behavior is undefined, may throw InvalidOperationException).
+    /// </summary>
     [Fact]
     public void Exec_WithNegativeMargin_StillExecutes()
     {
@@ -225,6 +254,9 @@ public class GrabCutParameterValidationTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec correctly converts red-only color values (RGB: 255, 0, 0).
+    /// </summary>
     [Fact]
     public void Exec_ColorValueConversion_RedOnly()
     {
@@ -238,6 +270,9 @@ public class GrabCutParameterValidationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec correctly converts green-only color values (RGB: 0, 255, 0).
+    /// </summary>
     [Fact]
     public void Exec_ColorValueConversion_GreenOnly()
     {
@@ -251,6 +286,9 @@ public class GrabCutParameterValidationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec correctly converts blue-only color values (RGB: 0, 0, 255).
+    /// </summary>
     [Fact]
     public void Exec_ColorValueConversion_BlueOnly()
     {
@@ -264,6 +302,9 @@ public class GrabCutParameterValidationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec handles identical foreground and background colors.
+    /// </summary>
     [Fact]
     public void Exec_WithSameForegroundAndBackgroundColor_Executes()
     {
@@ -278,6 +319,9 @@ public class GrabCutParameterValidationTests : IDisposable
         Assert.True(File.Exists(outputImage) || !File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec handles output paths with special characters in directory names.
+    /// </summary>
     [Fact]
     public void Exec_OutputPathWithSpecialCharacters_Executes()
     {
@@ -292,6 +336,9 @@ public class GrabCutParameterValidationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec processes a square ROI rectangle correctly.
+    /// </summary>
     [Fact]
     public void Exec_WithSquareRectangle_Executes()
     {
@@ -304,6 +351,9 @@ public class GrabCutParameterValidationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec processes a wide ROI rectangle correctly.
+    /// </summary>
     [Fact]
     public void Exec_WithWideRectangle_Executes()
     {
@@ -316,6 +366,9 @@ public class GrabCutParameterValidationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec processes a tall ROI rectangle correctly.
+    /// </summary>
     [Fact]
     public void Exec_WithTallRectangle_Executes()
     {

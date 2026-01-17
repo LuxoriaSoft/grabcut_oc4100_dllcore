@@ -26,7 +26,6 @@ public class GrabCutIntegrationTests : IDisposable
         }
         catch
         {
-            // Ignore cleanup errors
         }
     }
 
@@ -117,6 +116,9 @@ public class GrabCutIntegrationTests : IDisposable
         return testImagePath;
     }
 
+    /// <summary>
+    /// Tests processing a gradient image with color mode enabled and verifies output generation.
+    /// </summary>
     [Fact]
     public void ProcessGradientImage_WithColorMode_GeneratesOutput()
     {
@@ -132,6 +134,9 @@ public class GrabCutIntegrationTests : IDisposable
         Assert.True(new FileInfo(outputImage).Length > 0);
     }
 
+    /// <summary>
+    /// Tests processing a checkerboard pattern image with custom foreground and background colors.
+    /// </summary>
     [Fact]
     public void ProcessCheckerboardImage_WithCustomColors_GeneratesOutput()
     {
@@ -147,6 +152,9 @@ public class GrabCutIntegrationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests processing an image containing circles with a specified margin value.
+    /// </summary>
     [Fact]
     public void ProcessCircleImage_WithMargin_GeneratesOutput()
     {
@@ -161,6 +169,9 @@ public class GrabCutIntegrationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that multiple GrabCut instances can process images in parallel without conflicts.
+    /// </summary>
     [Fact]
     public void MultipleInstances_CanProcessInParallel()
     {
@@ -190,6 +201,9 @@ public class GrabCutIntegrationTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that processing the same image with different ROI regions produces different outputs.
+    /// </summary>
     [Fact]
     public void ProcessSameImage_WithDifferentROI_ProducesDifferentOutputs()
     {
@@ -211,6 +225,9 @@ public class GrabCutIntegrationTests : IDisposable
         Assert.True(size1 > 0 && size2 > 0);
     }
 
+    /// <summary>
+    /// Tests that processing overwrites an existing output file correctly.
+    /// </summary>
     [Fact]
     public void ProcessImage_OutputFileOverwrite_UpdatesExistingFile()
     {
@@ -232,6 +249,9 @@ public class GrabCutIntegrationTests : IDisposable
         Assert.True(secondSize > 0);
     }
 
+    /// <summary>
+    /// Tests batch processing of multiple images with consistent settings.
+    /// </summary>
     [Fact]
     public void ProcessMultipleImages_WithConsistentSettings_AllSucceed()
     {
@@ -252,6 +272,9 @@ public class GrabCutIntegrationTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests processing the same image with varying margin values.
+    /// </summary>
     [Fact]
     public void ProcessImage_WithVaryingMarginValues_AllSucceed()
     {
@@ -268,6 +291,9 @@ public class GrabCutIntegrationTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that both color mode enabled and disabled produce valid outputs.
+    /// </summary>
     [Fact]
     public void ProcessImage_ColorModeToggle_BothProduceOutput()
     {
@@ -286,6 +312,9 @@ public class GrabCutIntegrationTests : IDisposable
         Assert.True(File.Exists(outputNoColor));
     }
 
+    /// <summary>
+    /// Tests processing a complex checkerboard image with a small ROI region.
+    /// </summary>
     [Fact]
     public void ProcessComplexImage_WithSmallROI_Executes()
     {
@@ -300,6 +329,9 @@ public class GrabCutIntegrationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests processing a complex checkerboard image with a large ROI region.
+    /// </summary>
     [Fact]
     public void ProcessComplexImage_WithLargeROI_Executes()
     {
@@ -314,6 +346,9 @@ public class GrabCutIntegrationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests all possible combinations of foreground and background colors produce valid outputs.
+    /// </summary>
     [Fact]
     public void AllColorCombinations_ProduceValidOutput()
     {
@@ -339,6 +374,9 @@ public class GrabCutIntegrationTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests processing a large 500x500 pixel image successfully.
+    /// </summary>
     [Fact]
     public void LargeImage_Processing_Succeeds()
     {
@@ -365,6 +403,9 @@ public class GrabCutIntegrationTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that output files can be created in nested directory structures.
+    /// </summary>
     [Fact]
     public void OutputDirectoryCreation_DoesNotThrow()
     {

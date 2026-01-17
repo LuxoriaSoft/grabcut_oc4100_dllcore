@@ -34,7 +34,6 @@ public class GrabCutErrorHandlingTests : IDisposable
         }
         catch
         {
-            // Ignore cleanup errors
         }
     }
 
@@ -58,6 +57,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         return testImagePath;
     }
 
+    /// <summary>
+    /// Tests that a GrabCut instance can be successfully instantiated.
+    /// </summary>
     [Fact]
     public void GrabCut_IsInstantiable()
     {
@@ -68,6 +70,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.NotNull(grabCut);
     }
 
+    /// <summary>
+    /// Tests that Exec succeeds with valid parameters and creates an output file.
+    /// </summary>
     [Fact]
     public void Exec_WithValidParameters_Succeeds()
     {
@@ -82,6 +87,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(File.Exists(outputPath), "Output file should be created");
     }
 
+    /// <summary>
+    /// Tests that Exec succeeds with a small region of interest (ROI).
+    /// </summary>
     [Fact]
     public void Exec_WithSmallRoi_Succeeds()
     {
@@ -96,6 +104,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(File.Exists(outputPath), "Output file should be created with small ROI");
     }
 
+    /// <summary>
+    /// Tests that Exec succeeds with a medium number of iterations (3).
+    /// </summary>
     [Fact]
     public void Exec_WithMediumIterations_Succeeds()
     {
@@ -110,6 +121,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(File.Exists(outputPath), "Output file should be created with medium iterations");
     }
 
+    /// <summary>
+    /// Tests that Exec succeeds with a large number of iterations (5).
+    /// </summary>
     [Fact]
     public void Exec_WithLargeIterations_Succeeds()
     {
@@ -124,6 +138,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(File.Exists(outputPath), "Output file should be created with large iterations");
     }
 
+    /// <summary>
+    /// Tests that Exec succeeds with custom foreground and background color parameters.
+    /// </summary>
     [Fact]
     public void Exec_WithColorParameters_Succeeds()
     {
@@ -138,6 +155,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(File.Exists(outputPath), "Output file should be created with color parameters");
     }
 
+    /// <summary>
+    /// Tests that Exec creates an output file with content after execution.
+    /// </summary>
     [Fact]
     public void Exec_CreatesOutputFile()
     {
@@ -154,6 +174,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(new FileInfo(outputPath).Length > 0, "Output file should have content");
     }
 
+    /// <summary>
+    /// Tests that the output file created by Exec is a valid bitmap that can be loaded.
+    /// </summary>
     [Fact]
     public void Exec_OutputFileIsValidBitmap()
     {
@@ -175,6 +198,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec preserves the original image dimensions in the output.
+    /// </summary>
     [Fact]
     public void Exec_PreservesImageDimensions()
     {
@@ -195,6 +221,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec can be called multiple times successfully without side effects.
+    /// </summary>
     [Fact]
     public void Exec_CanBeCalledMultipleTimes()
     {
@@ -210,6 +239,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec succeeds with different ROI positions on the same image.
+    /// </summary>
     [Fact]
     public void Exec_WithDifferentRoiPositions_Succeeds()
     {
@@ -226,6 +258,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec succeeds with a minimal 50x50 pixel image.
+    /// </summary>
     [Fact]
     public void Exec_WithMinimalImage_Succeeds()
     {
@@ -240,6 +275,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(File.Exists(outputPath), "Output file should be created for minimal image");
     }
 
+    /// <summary>
+    /// Tests that Exec succeeds with a large 400x300 pixel image.
+    /// </summary>
     [Fact]
     public void Exec_WithLargeImage_Succeeds()
     {
@@ -254,6 +292,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(File.Exists(outputPath), "Output file should be created for large image");
     }
 
+    /// <summary>
+    /// Tests that Exec succeeds with a custom foreground color when color mode is enabled.
+    /// </summary>
     [Fact]
     public void Exec_WithCustomForegroundColor_Succeeds()
     {
@@ -269,6 +310,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(File.Exists(outputPath));
     }
 
+    /// <summary>
+    /// Tests that Exec succeeds with both custom foreground and background colors.
+    /// </summary>
     [Fact]
     public void Exec_WithBothCustomColors_Succeeds()
     {
@@ -283,6 +327,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(File.Exists(outputPath));
     }
 
+    /// <summary>
+    /// Tests that Exec throws ArgumentException when color is false and foreground color is null.
+    /// </summary>
     [Fact]
     public void Exec_WithColorFalseAndNullForeground_ThrowsArgumentException()
     {
@@ -297,6 +344,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.Contains("Foreground and background colors must be provided", exception.Message);
     }
 
+    /// <summary>
+    /// Tests that Exec throws ArgumentException when color is false and background color is null.
+    /// </summary>
     [Fact]
     public void Exec_WithColorFalseAndNullBackground_ThrowsArgumentException()
     {
@@ -311,6 +361,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.Contains("Foreground and background colors must be provided", exception.Message);
     }
 
+    /// <summary>
+    /// Tests that Exec throws ArgumentException when color is false and both foreground and background colors are null.
+    /// </summary>
     [Fact]
     public void Exec_WithColorFalseAndBothColorsNull_ThrowsArgumentException()
     {
@@ -325,6 +378,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.Contains("Foreground and background colors must be provided", exception.Message);
     }
 
+    /// <summary>
+    /// Tests that Exec can execute successfully after a previous execution threw an exception.
+    /// </summary>
     [Fact]
     public void Exec_ValidExecution_AfterException_Works()
     {
@@ -344,6 +400,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(File.Exists(validOutputPath));
     }
 
+    /// <summary>
+    /// Tests that different GrabCut instances handle errors independently without cross-contamination.
+    /// </summary>
     [Fact]
     public void Exec_DifferentInstances_HandleErrorsIndependently()
     {
@@ -364,6 +423,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.True(File.Exists(outputPath1));
     }
 
+    /// <summary>
+    /// Tests that color validation throws the correct ArgumentException type.
+    /// </summary>
     [Fact]
     public void Exec_ArgumentExceptionType_ForColorValidation()
     {
@@ -379,6 +441,9 @@ public class GrabCutErrorHandlingTests : IDisposable
         Assert.IsType<ArgumentException>(exception);
     }
 
+    /// <summary>
+    /// Tests that the GrabCut constructor can be called multiple times without throwing exceptions.
+    /// </summary>
     [Fact]
     public void Constructor_DoesNotThrow_WhenCalledMultipleTimes()
     {

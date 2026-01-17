@@ -27,7 +27,6 @@ public class GrabCutTests : IDisposable
         }
         catch
         {
-            // Ignore cleanup errors
         }
     }
 
@@ -86,6 +85,9 @@ public class GrabCutTests : IDisposable
         return testImagePath;
     }
 
+    /// <summary>
+    /// Tests that the GrabCut constructor initializes successfully without throwing exceptions.
+    /// </summary>
     [Fact]
     public void Constructor_InitializesSuccessfully()
     {
@@ -94,6 +96,9 @@ public class GrabCutTests : IDisposable
         Assert.NotNull(grabCut);
     }
 
+    /// <summary>
+    /// Tests that Exec with valid parameters creates an output file with content.
+    /// </summary>
     [Fact]
     public void Exec_WithValidParameters_CreatesOutputFile()
     {
@@ -109,6 +114,9 @@ public class GrabCutTests : IDisposable
         Assert.True(new FileInfo(outputImage).Length > 0, "Output file should not be empty");
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with default margin parameter.
+    /// </summary>
     [Fact]
     public void Exec_WithDefaultMargin_ExecutesSuccessfully()
     {
@@ -121,6 +129,9 @@ public class GrabCutTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with a custom margin value.
+    /// </summary>
     [Fact]
     public void Exec_WithCustomMargin_ExecutesSuccessfully()
     {
@@ -133,6 +144,9 @@ public class GrabCutTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with color mode enabled.
+    /// </summary>
     [Fact]
     public void Exec_WithColorModeEnabled_ExecutesSuccessfully()
     {
@@ -145,6 +159,9 @@ public class GrabCutTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with a custom foreground color.
+    /// </summary>
     [Fact]
     public void Exec_WithCustomForegroundColor_ExecutesSuccessfully()
     {
@@ -160,6 +177,9 @@ public class GrabCutTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with a custom background color.
+    /// </summary>
     [Fact]
     public void Exec_WithCustomBackgroundColor_ExecutesSuccessfully()
     {
@@ -175,6 +195,9 @@ public class GrabCutTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with different ROI rectangle coordinates.
+    /// </summary>
     [Fact]
     public void Exec_WithDifferentRectangles_ExecutesSuccessfully()
     {
@@ -187,6 +210,9 @@ public class GrabCutTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with zero margin value.
+    /// </summary>
     [Fact]
     public void Exec_WithZeroMargin_ExecutesSuccessfully()
     {
@@ -199,6 +225,9 @@ public class GrabCutTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with a large margin value.
+    /// </summary>
     [Fact]
     public void Exec_WithLargeMargin_ExecutesSuccessfully()
     {
@@ -211,6 +240,9 @@ public class GrabCutTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with various foreground and background color combinations.
+    /// </summary>
     [Fact]
     public void Exec_WithVariousColorCombinations_ExecutesSuccessfully()
     {
@@ -234,6 +266,9 @@ public class GrabCutTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec throws ArgumentException when color mode is disabled but foreground and background colors are not provided.
+    /// </summary>
     [Fact]
     public void Exec_WithColorModeDisabled_RequiresForegroundColor()
     {
@@ -248,6 +283,9 @@ public class GrabCutTests : IDisposable
         Assert.Contains("Foreground and background colors must be provided", exception.Message);
     }
 
+    /// <summary>
+    /// Tests that Exec throws ArgumentException when color mode is disabled but background color is not provided.
+    /// </summary>
     [Fact]
     public void Exec_WithColorModeDisabled_RequiresBackgroundColor()
     {
@@ -263,6 +301,9 @@ public class GrabCutTests : IDisposable
         Assert.Contains("Foreground and background colors must be provided", exception.Message);
     }
 
+    /// <summary>
+    /// Tests that Exec throws InvalidOperationException when input file does not exist.
+    /// </summary>
     [Fact]
     public void Exec_WithNonexistentInputFile_ThrowsInvalidOperationException()
     {
@@ -277,6 +318,9 @@ public class GrabCutTests : IDisposable
         Assert.Contains("GrabCut execution failed", exception.Message);
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with ROI origin at coordinates (0, 0).
+    /// </summary>
     [Fact]
     public void Exec_WithOriginAtZero_ExecutesSuccessfully()
     {
@@ -289,6 +333,9 @@ public class GrabCutTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec creates output files with different image formats (BMP, JPG, PNG).
+    /// </summary>
     [Fact]
     public void Exec_WithDifferentOutputFormats_CreatesFile()
     {
@@ -305,6 +352,9 @@ public class GrabCutTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec produces a valid output file that is different from the input.
+    /// </summary>
     [Fact]
     public void Exec_ProducesOutputDifferentFromInput()
     {
@@ -323,6 +373,9 @@ public class GrabCutTests : IDisposable
         Assert.True(outputFileSize > 0);
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with a small ROI rectangle.
+    /// </summary>
     [Fact]
     public void Exec_WithSmallRectangle_ExecutesSuccessfully()
     {
@@ -335,6 +388,9 @@ public class GrabCutTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with a large ROI rectangle (handles potential SEH exceptions).
+    /// </summary>
     [Fact]
     public void Exec_WithLargeRectangle_ExecutesSuccessfully()
     {
@@ -355,6 +411,9 @@ public class GrabCutTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec can be called multiple times with different output files.
+    /// </summary>
     [Fact]
     public void Exec_MultipleCallsWithDifferentOutputFiles()
     {
@@ -371,6 +430,9 @@ public class GrabCutTests : IDisposable
         }
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with maximum color values (white foreground, black background).
+    /// </summary>
     [Fact]
     public void Exec_WithMaxColorValues_ExecutesSuccessfully()
     {
@@ -384,6 +446,9 @@ public class GrabCutTests : IDisposable
         Assert.True(File.Exists(outputImage));
     }
 
+    /// <summary>
+    /// Tests that Exec executes successfully with minimum color values (black foreground, white background).
+    /// </summary>
     [Fact]
     public void Exec_WithMinColorValues_ExecutesSuccessfully()
     {
