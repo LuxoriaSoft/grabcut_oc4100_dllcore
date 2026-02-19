@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Runtime.Versioning;
 using Xunit;
 
 namespace Luxoria.Algorithm.GrabCut.Tests;
@@ -11,6 +12,7 @@ namespace Luxoria.Algorithm.GrabCut.Tests;
 /// AccessViolationException instead of handling errors gracefully. These tests focus on 
 /// error conditions that can be validated without triggering native crashes.
 /// </summary>
+[SupportedOSPlatform("windows")]
 public class GrabCutErrorHandlingTests : IDisposable
 {
     private readonly GrabCut _grabCut;

@@ -1,8 +1,10 @@
 using System.Drawing;
+using System.Runtime.Versioning;
 using Xunit;
 
 namespace Luxoria.Algorithm.GrabCut.Tests;
 
+[SupportedOSPlatform("windows")]
 public class GrabCutIntegrationTests : IDisposable
 {
     private readonly GrabCut _grabCut;
@@ -173,7 +175,7 @@ public class GrabCutIntegrationTests : IDisposable
     /// Tests that multiple GrabCut instances can process images in parallel without conflicts.
     /// </summary>
     [Fact]
-    public void MultipleInstances_CanProcessInParallel()
+    public async Task MultipleInstances_CanProcessInParallel()
     {
         // Arrange
         var inputImage = CreateGradientImage();
@@ -191,7 +193,7 @@ public class GrabCutIntegrationTests : IDisposable
             }));
         }
 
-        Task.WaitAll(tasks.ToArray());
+        await Task.WhenAll(tasks);
 
         // Assert
         for (int i = 0; i < 5; i++)

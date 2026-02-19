@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Runtime.Versioning;
 using Xunit;
 
 namespace Luxoria.Algorithm.GrabCut.Tests;
@@ -7,6 +8,7 @@ namespace Luxoria.Algorithm.GrabCut.Tests;
 /// Advanced test suite for GrabCut functionality.
 /// Covers edge cases, boundary conditions, color variations, and parallel execution scenarios.
 /// </summary>
+[SupportedOSPlatform("windows")]
 public class GrabCutAdvancedTests : IDisposable
 {
     // GrabCut instance used for testing

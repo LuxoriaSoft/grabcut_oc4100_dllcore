@@ -1,8 +1,10 @@
 using System.Drawing;
+using System.Runtime.Versioning;
 using Xunit;
 
 namespace Luxoria.Algorithm.GrabCut.Tests;
 
+[SupportedOSPlatform("windows")]
 public class GrabCutTests : IDisposable
 {
     private readonly GrabCut _grabCut;
