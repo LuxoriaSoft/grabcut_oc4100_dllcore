@@ -32,7 +32,7 @@ public class GrabCutParameterValidationTests : IDisposable
     private string CreateTestImage(int width = 100, int height = 100)
     {
         var testImagePath = Path.Combine(_testOutputDirectory, $"test_{width}x{height}.bmp");
-        
+
         using (var bitmap = new Bitmap(width, height))
         {
             for (int x = 0; x < width; x++)

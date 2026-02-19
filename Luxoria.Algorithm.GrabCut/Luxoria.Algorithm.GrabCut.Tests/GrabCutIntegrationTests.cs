@@ -35,7 +35,7 @@ public class GrabCutIntegrationTests : IDisposable
     private string CreateGradientImage()
     {
         var testImagePath = Path.Combine(_testOutputDirectory, "gradient.bmp");
-        
+
         using (var bitmap = new Bitmap(200, 200))
         {
             for (int x = 0; x < 200; x++)
@@ -60,7 +60,7 @@ public class GrabCutIntegrationTests : IDisposable
     private string CreateCheckerboardImage()
     {
         var testImagePath = Path.Combine(_testOutputDirectory, "checkerboard.bmp");
-        
+
         using (var bitmap = new Bitmap(200, 200))
         {
             for (int x = 0; x < 200; x++)
@@ -83,7 +83,7 @@ public class GrabCutIntegrationTests : IDisposable
     private string CreateCircleImage()
     {
         var testImagePath = Path.Combine(_testOutputDirectory, "circles.bmp");
-        
+
         using (var bitmap = new Bitmap(200, 200))
         {
             // Fill background with white

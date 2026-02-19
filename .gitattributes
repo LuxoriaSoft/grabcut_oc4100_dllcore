@@ -1,0 +1,42 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Force CRLF line endings for C# files to match Windows CI
+*.cs text eol=crlf
+*.csproj text eol=crlf
+*.sln text eol=crlf
+
+# C/C++ source files
+*.cpp text eol=lf
+*.h text eol=lf
+*.c text eol=lf
+
+# CMake files
+CMakeLists.txt text eol=lf
+*.cmake text eol=lf
+
+# Markdown and documentation
+*.md text eol=lf
+*.txt text eol=lf
+
+# JSON files
+*.json text eol=lf
+vcpkg.json text eol=lf
+
+# Shell scripts (must have LF)
+*.sh text eol=lf
+
+# Batch scripts (must have CRLF)
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary files
+*.dll binary
+*.exe binary
+*.exp binary
+*.pdb binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.bmp binary
+*.ico binary

@@ -36,7 +36,7 @@ public class GrabCutTests : IDisposable
     private string CreateTestImage()
     {
         var testImagePath = Path.Combine(_testOutputDirectory, "test_image.bmp");
-        
+
         using (var bitmap = new Bitmap(100, 100))
         {
             // Fill with red color
@@ -59,7 +59,7 @@ public class GrabCutTests : IDisposable
     private string CreateTestImageWithRegions()
     {
         var testImagePath = Path.Combine(_testOutputDirectory, "test_image_regions.bmp");
-        
+
         using (var bitmap = new Bitmap(200, 200))
         {
             // Left half - blue (background)
@@ -172,7 +172,7 @@ public class GrabCutTests : IDisposable
         var backgroundColor = Color.White;
 
         // Act & Assert
-        _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false, 
+        _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false,
             foreground: foregroundColor, background: backgroundColor);
         Assert.True(File.Exists(outputImage));
     }
@@ -190,7 +190,7 @@ public class GrabCutTests : IDisposable
         var backgroundColor = Color.Black;
 
         // Act & Assert
-        _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false, 
+        _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false,
             foreground: foregroundColor, background: backgroundColor);
         Assert.True(File.Exists(outputImage));
     }
@@ -260,7 +260,7 @@ public class GrabCutTests : IDisposable
         for (int i = 0; i < colors.Length; i++)
         {
             var outputImage = Path.Combine(_testOutputDirectory, $"output_colors_{i}.bmp");
-            _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false, 
+            _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false,
                 foreground: colors[i].Item1, background: colors[i].Item2);
             Assert.True(File.Exists(outputImage));
         }
@@ -279,7 +279,7 @@ public class GrabCutTests : IDisposable
         // Act & Assert - should throw when color is false but foreground/background are null
         var exception = Assert.Throws<ArgumentException>(() =>
             _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false));
-        
+
         Assert.Contains("Foreground and background colors must be provided", exception.Message);
     }
 
@@ -295,9 +295,9 @@ public class GrabCutTests : IDisposable
 
         // Act & Assert - should throw when color is false but background is null
         var exception = Assert.Throws<ArgumentException>(() =>
-            _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false, 
+            _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false,
                 foreground: Color.Red));
-        
+
         Assert.Contains("Foreground and background colors must be provided", exception.Message);
     }
 
@@ -314,7 +314,7 @@ public class GrabCutTests : IDisposable
         // Act & Assert
         var exception = Assert.Throws<InvalidOperationException>(() =>
             _grabCut.Exec(nonexistentFile, outputImage, 10, 10, 50, 50));
-        
+
         Assert.Contains("GrabCut execution failed", exception.Message);
     }
 
@@ -441,7 +441,7 @@ public class GrabCutTests : IDisposable
         var outputImage = Path.Combine(_testOutputDirectory, "output_max_colors.bmp");
 
         // Act & Assert
-        _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false, 
+        _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false,
             foreground: Color.White, background: Color.Black);
         Assert.True(File.Exists(outputImage));
     }
@@ -457,7 +457,7 @@ public class GrabCutTests : IDisposable
         var outputImage = Path.Combine(_testOutputDirectory, "output_min_colors.bmp");
 
         // Act & Assert
-        _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false, 
+        _grabCut.Exec(inputImage, outputImage, 10, 10, 50, 50, color: false,
             foreground: Color.Black, background: Color.White);
         Assert.True(File.Exists(outputImage));
     }

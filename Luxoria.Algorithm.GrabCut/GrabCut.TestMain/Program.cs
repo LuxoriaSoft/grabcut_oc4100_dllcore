@@ -1,5 +1,5 @@
-﻿using Luxoria.Algorithm.GrabCut;
 using System.Drawing;
+using Luxoria.Algorithm.GrabCut;
 
 GrabCut grabCut = new GrabCut();
 

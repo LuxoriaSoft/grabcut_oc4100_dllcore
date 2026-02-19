@@ -40,7 +40,7 @@ public class GrabCutErrorHandlingTests : IDisposable
     private string CreateValidTestImage(int width = 100, int height = 100, Color? color = null)
     {
         var testImagePath = Path.Combine(_testOutputDirectory, "valid_image_" + Guid.NewGuid() + ".bmp");
-        
+
         using (var bitmap = new Bitmap(width, height))
         {
             var fillColor = color ?? Color.Red;
@@ -189,7 +189,7 @@ public class GrabCutErrorHandlingTests : IDisposable
 
         // Assert
         Assert.True(File.Exists(outputPath));
-        
+
         // Try to load the output as a bitmap
         using (var outputBitmap = new Bitmap(outputPath))
         {
@@ -416,7 +416,7 @@ public class GrabCutErrorHandlingTests : IDisposable
 
         // Act & Assert - both should execute without cross-contamination
         grabCut1.Exec(inputPath, outputPath1, 10, 10, 50, 50);
-        
+
         Assert.Throws<ArgumentException>(() =>
             grabCut2.Exec(inputPath, outputPath2, 10, 10, 50, 50, color: false));
 

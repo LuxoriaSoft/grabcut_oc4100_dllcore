@@ -11,7 +11,7 @@ public class GrabCutAdvancedTests : IDisposable
 {
     // GrabCut instance used for testing
     private readonly GrabCut _grabCut;
-    
+
     // Temporary directory for test outputs (unique per test instance)
     private readonly string _testOutputDirectory;
 
@@ -19,7 +19,7 @@ public class GrabCutAdvancedTests : IDisposable
     {
         // Initialize GrabCut instance for all tests
         _grabCut = new GrabCut();
-        
+
         // Create unique temp directory to avoid conflicts in parallel test execution
         _testOutputDirectory = Path.Combine(Path.GetTempPath(), "GrabCutAdvancedTests_" + Guid.NewGuid());
         Directory.CreateDirectory(_testOutputDirectory);
@@ -53,12 +53,12 @@ public class GrabCutAdvancedTests : IDisposable
     {
         // Generate unique filename to avoid conflicts
         var testImagePath = Path.Combine(_testOutputDirectory, "test_image_" + Guid.NewGuid() + ".bmp");
-        
+
         using (var bitmap = new Bitmap(width, height))
         {
             // Use specified color or default to blue
             var fillColor = color ?? Color.Blue;
-            
+
             // Fill entire image with solid color
             for (int x = 0; x < width; x++)
             {
@@ -67,7 +67,7 @@ public class GrabCutAdvancedTests : IDisposable
                     bitmap.SetPixel(x, y, fillColor);
                 }
             }
-            
+
             // Save as BMP format for maximum compatibility
             bitmap.Save(testImagePath, System.Drawing.Imaging.ImageFormat.Bmp);
         }
@@ -309,7 +309,7 @@ public class GrabCutAdvancedTests : IDisposable
         var grabCut1 = new GrabCut();
         var grabCut2 = new GrabCut();
         var grabCut3 = new GrabCut();
-        
+
         // Use same input image for all parallel operations
         var inputPath = CreateTestImage();
         var output1 = Path.Combine(_testOutputDirectory, "parallel_1.bmp");
@@ -344,7 +344,7 @@ public class GrabCutAdvancedTests : IDisposable
         {
             var outputPath = Path.Combine(_testOutputDirectory, $"sequential_{i}.bmp");
             var margin = i;  // Margin increases from 0 to 4
-            
+
             // Execute with progressively different ROI parameters:
             // - Origin shifts right and down (10+i*5, 10+i*5)
             // - ROI size decreases (50-i*5, 50-i*5)
@@ -413,7 +413,7 @@ public class GrabCutAdvancedTests : IDisposable
         // Arrange
         var inputPath = CreateTestImage();
         var outputPath = Path.Combine(_testOutputDirectory, "output_rgb_values.bmp");
-        
+
         // Test with specific RGB values
         var fg = Color.FromArgb(128, 64, 32);
         var bg = Color.FromArgb(255, 128, 64);
@@ -454,11 +454,11 @@ public class GrabCutAdvancedTests : IDisposable
         // Arrange
         var inputPath = CreateTestImage();
         var outputPath = Path.Combine(_testOutputDirectory, "overwrite_test.bmp");
-        
+
         // Create initial file with first ROI parameters
         _grabCut.Exec(inputPath, outputPath, 10, 10, 50, 50);
         var firstWriteTime = File.GetLastWriteTime(outputPath);
-        
+
         // Wait to ensure timestamp difference (file system resolution)
         System.Threading.Thread.Sleep(100);
 
